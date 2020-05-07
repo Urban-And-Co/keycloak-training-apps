@@ -1,0 +1,17 @@
+{
+  "realm": "demo",
+  "auth-server-url": "http://localhost:8180/auth/",
+  "ssl-required": "external",
+  "resource": "product-portal",
+  "credentials": {
+    "jwt": {
+      "client-keystore-file": "classpath:keystore-client.jks",
+      "client-keystore-type": "JKS",
+      "client-keystore-password": "storepass",
+      "client-key-password": "keypass",
+      "client-key-alias": "clientkey",
+      "token-expiration": 10
+    }
+  },
+  "confidential-port": 0
+}

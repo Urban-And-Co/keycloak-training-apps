@@ -1,0 +1,10 @@
+{
+  "realm": "demo",
+  "auth-server-url": "http://localhost:8180/auth/",
+  "ssl-required": "external",
+  "resource": "offline-access-portal",
+  "credentials": {
+    "secret": "1eb7e98c-1e24-42d5-a1ef-72de9a033a84"
+  },
+  "confidential-port": 0
+}

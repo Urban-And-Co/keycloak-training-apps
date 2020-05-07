@@ -1,0 +1,14 @@
+<nav>
+    <mat-toolbar color="primary">
+        <span class="navbar-fill">
+            <button *ngIf="isLoggedIn" mat-button routerLink="/projects">Heroes</button>
+        </span>
+        <span>
+            <button *ngIf="!isLoggedIn" mat-button (click)="login()">Login</button>
+            <button *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</button>
+        </span>
+    </mat-toolbar>
+</nav>
+<div>
+<router-outlet></router-outlet>
+</div>
