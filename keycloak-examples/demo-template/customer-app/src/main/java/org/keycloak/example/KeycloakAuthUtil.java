@@ -12,13 +12,14 @@ public final class KeycloakAuthUtil {
   public static String getKeycloakUrl(HttpServletRequest req) {
 
     GsonBuilder builder = new GsonBuilder();
+
     try {
-      InputStream in = req.getServletContext().getResourceAsStream("keycloak.json");
+      InputStream in = req.getServletContext().getResourceAsStream("/WEB-INF/keycloak.json");
       Reader reader = new InputStreamReader(in, StandardCharsets.UTF_8);
       JsonObject json = builder.create().fromJson(reader, JsonObject.class);
       return json.get("auth-server-url").getAsString();
     } catch (Exception e) {
-      return "http://localhost:8180/auth";
+      throw new RuntimeException(e);      
     }
 
   }
