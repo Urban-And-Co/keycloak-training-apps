@@ -1,0 +1,8 @@
+{
+  "realm": "saml-broker-authentication-realm",
+  "auth-server-url": "http://localhost:8180/auth/",
+  "ssl-required": "external",
+  "resource": "saml-broker-authentication",
+  "public-client": true,
+  "confidential-port": 0
+}

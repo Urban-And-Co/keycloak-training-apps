@@ -1,0 +1,10 @@
+{
+  "realm": "ldap-demo",
+  "auth-server-url": "http://localhost:8180/auth/",
+  "ssl-required": "external",
+  "resource": "ldap-app",
+  "credentials": {
+    "secret": "password"
+  },
+  "confidential-port": 0
+}

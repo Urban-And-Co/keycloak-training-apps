@@ -1,0 +1,12 @@
+{
+  "realm": "tenant2",
+  "auth-server-url": "http://localhost:8180/auth/",
+  "ssl-required": "external",
+  "resource": "multi-tenant",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "password"
+  },
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}
