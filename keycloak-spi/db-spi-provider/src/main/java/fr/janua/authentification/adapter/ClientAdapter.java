@@ -16,6 +16,8 @@ public class ClientAdapter implements ClientModel, JpaModel<Client> {
 
 	private RealmModel realm;
 
+	private boolean alwaysDisplayInConsole;
+
 	public ClientAdapter(KeycloakSession session, RealmModel realm, Client client) {
 		this.session = session;
 		this.realm = realm;
@@ -77,6 +79,16 @@ public class ClientAdapter implements ClientModel, JpaModel<Client> {
 	}
 
 	@Override
+	public boolean isAlwaysDisplayInConsole() {
+		return alwaysDisplayInConsole;
+	}
+
+	@Override
+	public void setAlwaysDisplayInConsole(boolean alwaysDisplayInConsole) {
+		this.alwaysDisplayInConsole = alwaysDisplayInConsole;
+	}
+
+	@Override
 	public boolean isPublicClient() {
 		return false;
 	}
@@ -113,6 +125,16 @@ public class ClientAdapter implements ClientModel, JpaModel<Client> {
 	@Override
 	public Set<RoleModel> getRoles() {
 		return session.realms().getClientRoles(realm, this);
+	}
+
+	@Override
+	public Set<RoleModel> getRoles(Integer firstResult, Integer maxResults) {
+		return session.realms().getClientRoles(realm, this, firstResult, maxResults);
+	}
+
+	@Override
+	public Set<RoleModel> searchForRoles(String search, Integer first, Integer max) {
+		return session.realms().searchForClientRoles(realm, this, search, first, max);
 	}
 
 	@Override
