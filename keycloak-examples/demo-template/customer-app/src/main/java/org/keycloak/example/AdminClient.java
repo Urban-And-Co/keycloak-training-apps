@@ -26,6 +26,7 @@ import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.common.util.UriUtils;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.util.JsonSerialization;
+import org.keycloak.example.KeycloakAuthUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -59,7 +60,8 @@ public class AdminClient {
 
         HttpClient client = new DefaultHttpClient();
         try {
-            HttpGet get = new HttpGet("http://localhost:8180/auth/admin/realms/demo/roles");
+            String keycloakAuthUri = KeycloakAuthUtil.getKeycloakUrl(req);
+            HttpGet get = new HttpGet(keycloakAuthUri + "admin/realms/demo/roles");
             get.addHeader("Authorization", "Bearer " + session.getTokenString());
             try {
                 HttpResponse response = client.execute(get);
