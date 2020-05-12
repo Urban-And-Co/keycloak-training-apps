@@ -3,6 +3,7 @@
 <%@ page import="org.keycloak.common.util.KeycloakUriBuilder" %>
 <%@ page import="org.keycloak.constants.ServiceUrlConstants" %>
 <%@ page import="org.keycloak.example.CustomerDatabaseClient" %>
+<%@ page import="org.keycloak.example.KeycloakAuthUtil" %>
 <%@ page import="org.keycloak.representations.IDToken" %>
 <%@ page session="false" %>
 <html>
@@ -17,6 +18,7 @@
             .queryParam("referrer", "customer-portal").build("demo").toString();
     IDToken idToken = CustomerDatabaseClient.getIDToken(request);
 %>
+<p><%=KeycloakAuthUtil.getKeycloakUrl(request)%>
 <p>Goto: <a href="/product-portal">products</a> | <a href="<%=logoutUri%>">logout</a> | <a
         href="<%=acctUri%>">manage acct</a></p>
 Servlet User Principal <b><%=request.getUserPrincipal().getName()%>
