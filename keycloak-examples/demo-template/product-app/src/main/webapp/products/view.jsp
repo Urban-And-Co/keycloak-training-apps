@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
+<%@ page import="org.keycloak.common.util.UriUtils" %>
 <%@ page import="org.keycloak.common.util.KeycloakUriBuilder" %>
 <%@ page import="org.keycloak.constants.ServiceUrlConstants" %>
 <%@ page import="org.keycloak.example.oauth.ProductDatabaseClient" %>
+<%@ page import="org.keycloak.example.oauth.KeycloakAuthUtil" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -10,12 +12,13 @@
 </head>
 <body bgcolor="#F5F6CE">
 <%
-    String logoutUri = KeycloakUriBuilder.fromUri("http://localhost:8180/auth").path(ServiceUrlConstants.TOKEN_SERVICE_LOGOUT_PATH)
-            .queryParam("redirect_uri", "http://localhost:8080/product-portal").build("demo").toString();
-    String acctUri = KeycloakUriBuilder.fromUri("http://localhost:8180/auth").path(ServiceUrlConstants.ACCOUNT_SERVICE_PATH)
+    String keycloakAuthUri = KeycloakAuthUtil.getKeycloakUrl(request);
+    String origin = UriUtils.getOrigin(request.getRequestURL().toString());
+    String logoutUri = KeycloakUriBuilder.fromUri(keycloakAuthUri).path(ServiceUrlConstants.TOKEN_SERVICE_LOGOUT_PATH)
+            .queryParam("redirect_uri", origin + "/product-portal").build("demo").toString();
+    String acctUri = KeycloakUriBuilder.fromUri(keycloakAuthUri).path(ServiceUrlConstants.ACCOUNT_SERVICE_PATH)
             .queryParam("referrer", "product-portal").build("demo").toString();
 %>
-
 <p>Goto: <a href="/customer-portal">customers</a> | <a href="<%=logoutUri%>">logout</a> | <a href="<%=acctUri%>">manage acct</a></p>
 User <b><%=request.getUserPrincipal().getName()%></b> made this request.
 <h2>Product Listing</h2>
